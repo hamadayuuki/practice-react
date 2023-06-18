@@ -10,10 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: 'yarn'
-      - name: move path
-        run: cd clone-netflix
+      - name: ls
+        run: ls
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLONE_NETFLIX_DA663 }}'
           projectId: clone-netflix-da663
+          entryPoint: ./clone-netflix
