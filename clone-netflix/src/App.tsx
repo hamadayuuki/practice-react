@@ -3,12 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import { Row } from "./Row"
 import { Banner } from "./Banner"
+import { NavigationBar } from "./NavigationBar"
 import { requests } from "./requests"
 
 
 function App() {
   return (
     <div className="App">
+        <NavigationBar />
         <Banner />
         <Row
           title="NETFLIX ORIGUINALS"
