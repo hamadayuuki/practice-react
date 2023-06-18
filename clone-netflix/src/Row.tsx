@@ -61,8 +61,11 @@ export const Row = ({title, fetchUrl, isLargeRow}: Props) => {
         if(trailerUrl) {
             setTrailerUrl("");
         } else {
-            let trailerulr = await axios.get(`/movie/${movie.id}/videos?api_key=${API_KEY}`)
-            setTrailerUrl(trailerulr.data.results[0]?.key);
+            try {
+                let trailerulr = await axios.get(`/movie/${movie.id}/videos?api_key=${API_KEY}`)
+                console.log(trailerulr);
+                setTrailerUrl(trailerulr.data.results[0]?.key);
+            } catch(err) { }
         }
     };
 
