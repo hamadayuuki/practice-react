@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import "./Row.scss";
+import { API_KEY } from "./requests"
 
 const img_base_url = "https://image.tmdb.org/t/p/original";
 
@@ -20,10 +21,19 @@ type Movie = {
     backdrop_path: string;
 };
 
+type MovieTrailer = {
+    height: string;
+    width: string;
+    playerVars: {
+        autoplay: 0 | 1 | undefined;
+    };
+};
+
 export const Row = ({title, fetchUrl, isLargeRow}: Props) => {
     // 状態を通知する
     //     ↓変数  ↓変更を反映させるメソッド名
     const [movies, setMovies] = useState<Movie[]>([]);
+    const [trailerUrl, setTrailerUrl] = useState<string | null>("");
 
     // urlが更新される度に
     useEffect( () => {
@@ -36,6 +46,24 @@ export const Row = ({title, fetchUrl, isLargeRow}: Props) => {
     }, [fetchUrl]);   // 第2引数を与える事で(第2引数の値の変更時をトリガーにして)第1引数の関数を実行
 
     console.log(movies);
+
+    // Trailerの設定
+    const movieTrailer: MovieTrailer = {
+        height: "390",
+        width: "640",
+        playerVars: {
+            autoplay: 1,
+        },
+    };
+    // Trailer のURL更新
+    const handleClick = async (movie: Movie) => {
+        if(trailerUrl) {
+            setTrailerUrl("");
+        } else {
+            let trailerulr = await axios.get(`/movie/${movie.id}/videos?api_key=${API_KEY}`)
+            setTrailerUrl(trailerulr.data.results[0]?.key);
+        }
+    };
 
     return(
         <div className="Row">
