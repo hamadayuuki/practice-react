@@ -31,4 +31,4 @@ jobs:
               run: |
                   firebase deploy --token $FIREBASE_TOKEN
               env:
-                  FIREBASE_TOKEN: ${{ secrets.FIREBASETOKEN }}
+                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
