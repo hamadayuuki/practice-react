@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import "./Row.scss";
 import { API_KEY } from "./requests"
+import YouTube from "react-youtube"   // npm install react-youtube, movie-trailer
 
 const img_base_url = "https://image.tmdb.org/t/p/original";
 
