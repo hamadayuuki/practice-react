@@ -29,6 +29,7 @@ jobs:
                 CI: false
             - name: deploy to Firebase Hosting
               run: |
+                  ls
                   firebase deploy --token $FIREBASE_TOKEN
               env:
                   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
