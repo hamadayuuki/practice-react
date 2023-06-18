@@ -79,9 +79,11 @@ export const Row = ({title, fetchUrl, isLargeRow}: Props) => {
                     className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
                     src={`${img_base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
                     alt={movie.name}
+                    onClick = {() => handleClick(movie)}   // movies[i]がクリックされた時
                 />
             ))}
             </div>
+            {trailerUrl && <YouTube videoId = {trailerUrl} opts = {movieTrailer} />}
         </div>
     )
 };
