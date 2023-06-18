@@ -29,6 +29,7 @@ jobs:
                 CI: false
             - name: deploy to Firebase Hosting
               run: |
+                  cd clone-netflix
                   ls
                   firebase deploy --token $FIREBASE_TOKEN
               env:
